@@ -10,6 +10,13 @@ db.authenticate()
     console.log(
       `Successfully connected with database ==> ${process.env.DB_NAME}`
     );
+    if (process.env.DB_ASYNC) {
+      db.sync({
+        update: true,
+      })
+        .then(() => console.log("Database successfully synced"))
+        .catch((error) => console.log("💥 Error while syncing", error));
+    }
 
   })
   .catch((error) =>
