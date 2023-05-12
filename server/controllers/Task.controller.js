@@ -7,15 +7,10 @@ const Paginate = require("../utils/Paginate");
 module.exports.getTasks = CatchAsync(async (req, res, next) => {
   const { query } = req;
 
-  const pagination = await Paginate(
-    Models.Task,
-    {},
-    query.page,
-    query.limit
-  );
+  const pagination = await Paginate(Models.Task, {}, query.page, query.limit);
 
   let tasks = await Models.Task.findAll({
-    attributes:['id','name'],
+    attributes: ["id", "name"],
     order: [["createdAt", "DESC"]],
     limit: pagination.limit,
     offset: pagination.offset,
@@ -27,7 +22,7 @@ module.exports.getTasks = CatchAsync(async (req, res, next) => {
     message: "Tasks are fetched successfully",
     data: {
       tasks,
-      pagination
+      pagination,
     },
   });
 });
@@ -43,9 +38,9 @@ module.exports.createTask = CatchAsync(async (req, res, next) => {
 
   return res.status(201).json({
     status: "success",
-    message: "You are successfully created task.",
+    message: "Task created successfully.",
     data: {
-      task,
+      task: { id: task.id, name: task.name },
     },
   });
 });
