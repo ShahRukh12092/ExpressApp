@@ -1,7 +1,7 @@
 const User = require("./User.model");
 const Task = require("./Task.model");
 
-// write assocations header
+// write assocations here
 
 module.exports = {
     User,

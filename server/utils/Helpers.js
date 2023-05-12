@@ -21,3 +21,7 @@ module.exports.generateToken = (user) => {
     expiresIn: "10d",
   });
 };
+
+module.exports.validateToken = (token) => {
+  return jsonwebtoken.verify(token, process.env.JSON_TOKEN);
+};

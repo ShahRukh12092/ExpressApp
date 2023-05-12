@@ -3,7 +3,22 @@ const AppError = require("../utils/AppError");
 const CatchAsync = require("../utils/CatchAsync");
 const Helpers = require("../utils/Helpers");
 
-module.exports.getUser = CatchAsync(async (req, res, next) => {});
+module.exports.getUser = CatchAsync(async (req, res, next) => {
+  const {user} =req
+
+  let userData = await Models.User.findOne({ where: { id:user.id } });
+
+  userData = Helpers.convertToPlainJSObject(userData);
+  userData = Helpers.removePassword(userData);
+
+  return res.status(200).json({
+    status: "success",
+    message: "You are successfully logged in.",
+    data: {
+      user:userData
+    },
+  });
+});
 
 module.exports.registerUser = CatchAsync(async (req, res, next) => {
     const {data:{email},data:{password}} =req.body
@@ -24,7 +39,7 @@ module.exports.registerUser = CatchAsync(async (req, res, next) => {
          user
       },
     });
-  });
+});
     
 
 module.exports.login = CatchAsync(async (req, res, next) => {
@@ -51,4 +66,4 @@ module.exports.login = CatchAsync(async (req, res, next) => {
         jwt:token
       },
     });
-  });
+});
