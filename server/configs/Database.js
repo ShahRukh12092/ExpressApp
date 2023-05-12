@@ -8,7 +8,6 @@ module.exports = new Sequelize(
     host: process.env.DB_HOST,
     dialect: "postgres",
     logging: false,
-    // force: true,
     ssl: process.env.DB_ENABLE_SSL === "true",
     dialectOptions: {
       ssl: process.env.DB_ENABLE_SSL === "true" && {
