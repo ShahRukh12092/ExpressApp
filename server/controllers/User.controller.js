@@ -22,13 +22,12 @@ module.exports.getUser = CatchAsync(async (req, res, next) => {
 
 module.exports.registerUser = CatchAsync(async (req, res, next) => {
     const {data:{email},data:{password}} =req.body
-
     let user = await Models.User.findOne({ where: { email } });
-    if (user) return next(new AppError("Email already Exists", 400));
-  
-  
+    if (user) return next(new AppError("User with this email already Exists", 400));
+    
+    
     user = await Models.User.create({ email,password });
-  
+      
     user = Helpers.convertToPlainJSObject(user);
     user = Helpers.removePassword(user);
     
