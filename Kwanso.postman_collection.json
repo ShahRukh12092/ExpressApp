@@ -1,0 +1,207 @@
+{
+	"info": {
+		"_postman_id": "2c3e40b9-a674-48ce-aba0-58123f99831e",
+		"name": "Kwanso",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "18016580"
+	},
+	"item": [
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Register user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"data\": {\n        \"email\": \"srk41@gmail.com\",\n        \"password\": \"1234sdg\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{apiPortalURL}}/register",
+							"host": [
+								"{{apiPortalURL}}"
+							],
+							"path": [
+								"register"
+							]
+						},
+						"description": "#### Must be included in body's data object\n\n- email (required)\n- password (required, minimum length is 6)"
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"data\": {\n        \"email\": \"srk41@gmail.com\",\n        \"password\": \"1234sdg\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{apiPortalURL}}/login",
+							"host": [
+								"{{apiPortalURL}}"
+							],
+							"path": [
+								"login"
+							]
+						},
+						"description": "#### Must be included in body's data object\n\n- email (required)\n- password (required)"
+					},
+					"response": []
+				},
+				{
+					"name": "Get User",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{apiPortalURL}}/user",
+							"host": [
+								"{{apiPortalURL}}"
+							],
+							"path": [
+								"user"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "task",
+			"item": [
+				{
+					"name": "Create Task",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"data\":{\n        \"name\":\"task12\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{apiPortalURL}}/create-task",
+							"host": [
+								"{{apiPortalURL}}"
+							],
+							"path": [
+								"create-task"
+							]
+						},
+						"description": "#### Must be included in body's data object\n\n- name (required, not empty)"
+					},
+					"response": []
+				},
+				{
+					"name": "Get list of tasks",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{apiPortalURL}}/list-tasks?page=2&limit=2",
+							"host": [
+								"{{apiPortalURL}}"
+							],
+							"path": [
+								"list-tasks"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "2"
+								},
+								{
+									"key": "limit",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "apiPortalURL",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "token",
+			"value": "",
+			"type": "string"
+		}
+	]
+}

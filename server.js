@@ -1,7 +1,5 @@
 const dotenv = require("dotenv");
 dotenv.config({ path: "./configs.env" });
-
-//imports that uses environment variables.
 const db = require("./server/configs/Database");
 const app = require("./app");
 
