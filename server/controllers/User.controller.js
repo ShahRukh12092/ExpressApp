@@ -3,7 +3,7 @@ const AppError = require("../utils/AppError");
 const CatchAsync = require("../utils/CatchAsync");
 const Helpers = require("../utils/Helpers");
 
-module.exports.getUser = CatchAsync(async (req, res, next) => {
+const getUser = CatchAsync(async (req, res, next) => {
   const { user } = req;
 
   let userData = await Models.User.findOne({ where: { id: user.id } });
@@ -20,7 +20,7 @@ module.exports.getUser = CatchAsync(async (req, res, next) => {
   });
 });
 
-module.exports.registerUser = CatchAsync(async (req, res, next) => {
+const registerUser = CatchAsync(async (req, res, next) => {
   const {
     data: { email },
     data: { password },
@@ -43,7 +43,7 @@ module.exports.registerUser = CatchAsync(async (req, res, next) => {
   });
 });
 
-module.exports.login = CatchAsync(async (req, res, next) => {
+const login = CatchAsync(async (req, res, next) => {
   const { email, password } = req.body.data;
 
   let user = await Models.User.findOne({ where: { email } });
@@ -67,3 +67,9 @@ module.exports.login = CatchAsync(async (req, res, next) => {
     },
   });
 });
+
+module.exports = {
+  login,
+  registerUser,
+  getUser,
+};

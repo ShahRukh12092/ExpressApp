@@ -4,7 +4,7 @@ const CatchAsync = require("../utils/CatchAsync");
 const Helpers = require("../utils/Helpers");
 const Paginate = require("../utils/Paginate");
 
-module.exports.getTasks = CatchAsync(async (req, res, next) => {
+const getTasks = CatchAsync(async (req, res, next) => {
   const { query } = req;
 
   const pagination = await Paginate(Models.Task, {}, query.page, query.limit);
@@ -27,7 +27,7 @@ module.exports.getTasks = CatchAsync(async (req, res, next) => {
   });
 });
 
-module.exports.createTask = CatchAsync(async (req, res, next) => {
+const createTask = CatchAsync(async (req, res, next) => {
   const {
     data: { name },
   } = req.body;
@@ -44,3 +44,5 @@ module.exports.createTask = CatchAsync(async (req, res, next) => {
     },
   });
 });
+
+module.exports = { createTask, getTasks };

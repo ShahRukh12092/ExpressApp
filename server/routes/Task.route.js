@@ -1,6 +1,6 @@
 const express = require("express");
 
-const taskController = require("../controllers/Task.controller");
+const { createTask, getTasks } = require("../controllers/Task.controller");
 const { validateCreateTask, validateQuery } = require("../validators/task");
 const { Authenticate } = require("../middlewares/Auth");
 const { validateInputData } = require("../utils/Helpers");
@@ -12,7 +12,7 @@ router.post(
   Authenticate,
   validateCreateTask,
   validateInputData,
-  taskController.createTask
+  createTask
 );
 
 router.get(
@@ -20,7 +20,7 @@ router.get(
   Authenticate,
   validateQuery,
   validateInputData,
-  taskController.getTasks
+  getTasks
 );
 
 module.exports = router;
